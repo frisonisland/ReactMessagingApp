@@ -1,0 +1,149 @@
+openapi: 3.0.1
+info:
+  title: Rest messaging app
+  description: Messaging app
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: frisonisland@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://localhost:3000/v2
+- url: http://localhost:3000/v2
+tags:
+- name: message
+  description: Message sent
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /message:
+    post:
+      tags:
+      - message
+      summary: Send message
+      operationId: sendMessage
+      requestBody:
+        description: Message to send
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        405:
+          description: Invalid input
+          content: {}
+      security:
+      - api_key: []
+      x-swagger-router-controller: Message
+  /messages/{userId}:
+    get:
+      tags:
+      - messages
+      summary: get messages of user
+      operationId: getMessages
+      parameters:
+      - name: userId
+        in: path
+        description: userId of user chat
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+                x-content-type: application/xml
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+                x-content-type: application/xml
+        400:
+          description: Invalid status value
+          content: {}
+      security:
+      - api_key: []
+      x-swagger-router-controller: Messages
+  /contacts:
+    get:
+      tags:
+      - contacts
+      summary: get all contacts
+      operationId: getContacts
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+                x-content-type: application/xml
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+                x-content-type: application/xml
+        400:
+          description: Invalid status value
+          content: {}
+      security:
+      - api_key: []
+      x-swagger-router-controller: Contacts
+    post:
+      tags:
+      - contacts
+      summary: add a contact
+      operationId: addContact
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Contact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+        400:
+          description: Invalid contact
+          content: {}
+      security:
+      - api_key: []
+      x-swagger-router-controller: Contacts
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        body:
+          type: string
+      xml:
+        name: Message
+    Contact:
+      type: object
+      properties:
+        name:
+          type: string
+      xml:
+        name: Contact
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header

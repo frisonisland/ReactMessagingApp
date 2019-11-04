@@ -1,0 +1,34 @@
+{
+  "name": "runner",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "chart.js": "latest",
+    "react": "^16.8.2",
+    "react-chartjs-2": "latest",
+    "react-dom": "^16.8.2",
+    "react-icons": "latest",
+    "react-router-dom": "latest",
+    "react-scripts": "2.1.5",
+    "redux":"latest",
+    "redux-thunk":"latest",
+    "react-redux":"latest",
+    "swagger-nodegen-cli": "^3.0.8"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:8080"
+}
