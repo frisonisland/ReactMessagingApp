@@ -11,6 +11,12 @@
   margin-left: 10px;
 }
 
+.avatar {
+  width: 30px;
+  border-radius: 50%;
+  margin-right:15px;
+  vertical-align: middle;
+}
 .App-header {
   background-color: #282c34;
   height: 40px;

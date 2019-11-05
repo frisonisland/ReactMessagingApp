@@ -14,7 +14,7 @@
     }
   },
   "host": "localhost:3000",
-  "basePath": "/v2",
+  "basePath": "/api/v2",
   "tags": [
     {
       "name": "message",
@@ -179,6 +179,9 @@
       "properties": {
         "body": {
           "type": "string"
+        },
+        "date": {
+          "type": "string"
         }
       },
       "xml": {
@@ -189,6 +192,15 @@
       "type": "object",
       "properties": {
         "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "info": {
+          "type": "string"
+        },
+        "picture": {
           "type": "string"
         }
       },

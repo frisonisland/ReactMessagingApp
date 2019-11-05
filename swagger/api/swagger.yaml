@@ -10,8 +10,8 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- url: https://localhost:3000/v2
-- url: http://localhost:3000/v2
+- url: https://localhost:3000/api/v2
+- url: http://localhost:3000/api/v2
 tags:
 - name: message
   description: Message sent
@@ -133,12 +133,20 @@ components:
       properties:
         body:
           type: string
+        date:
+          type: string
       xml:
         name: Message
     Contact:
       type: object
       properties:
         name:
+          type: string
+        status:
+          type: boolean
+        info:
+          type: string
+        picture:
           type: string
       xml:
         name: Contact
