@@ -8,7 +8,8 @@ function contactsReducer(state, action) {
     });
   }
   if (action.type === GET_CONTACTS) {
-    console.log(action.payload);
+    //console.log("Got contacts");
+    //console.log(action.payload);
     return Object.assign({}, state, {
       contacts: state.contacts.concat(action.payload)
     });

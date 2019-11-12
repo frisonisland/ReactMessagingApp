@@ -54,7 +54,7 @@ paths:
         description: userId of user chat
         required: true
         schema:
-          type: number
+          type: string
       responses:
         200:
           description: successful operation
@@ -140,6 +140,8 @@ components:
     Contact:
       type: object
       properties:
+        userId:
+          type: string
         name:
           type: string
         status:

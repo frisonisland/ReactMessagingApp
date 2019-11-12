@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {getContacts} from './model/actions/contacts';
+import ChatPage from './ChatPage'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,9 +22,7 @@ class AppRouter extends Component {
           <div className="App-sider">
             <ul className="sidebar-menu">
               {this.props.contacts.map((e,i) => {
-                 console.log("CONTACT: ", e);
-                 console.log("CONTACT_I: ", i);
-                 return <li>
+                 return <li key={i}>
                    <Link to={"/messages/" + e.userId} key={i}>
                      <img className="avatar"
                    src={"/avatar/" + e.picture} />
@@ -35,6 +34,11 @@ class AppRouter extends Component {
             </div>
           </div>
       <div className="App-content">
+        <Switch>
+          <Route path="/messages/:userId">
+            <ChatPage/>
+          </Route>
+        </Switch>
       </div>
     </div>
   </Router>

@@ -17,6 +17,21 @@
   margin-right:15px;
   vertical-align: middle;
 }
+.Messages-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  flex-direction: column;
+}
+.senderMessage {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px 0 10px 0;
+  padding: 5px;
+  width:200px;
+}
 .App-header {
   background-color: #282c34;
   height: 40px;
