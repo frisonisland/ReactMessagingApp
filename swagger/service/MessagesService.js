@@ -9,12 +9,26 @@
  **/
 exports.getMessages = function(userId) {
   return new Promise(function(resolve, reject) {
-    var examples = [{body:"Ciao!"},
-                    {body:"Come va?"}];
+    var examples = {};
     if (Object.keys(examples).length > 0) {
-      resolve(examples);
+      resolve(examples[Object.keys(examples)[0]]);
     } else {
       resolve();
     }
   });
 }
+
+
+/**
+ * Send message
+ *
+ * body Message Message to send
+ * userId String userId of user chat
+ * no response value expected for this operation
+ **/
+exports.sendMessage = function(body,userId) {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+

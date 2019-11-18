@@ -19,29 +19,6 @@ tags:
     description: Find out more
     url: http://swagger.io
 paths:
-  /message:
-    post:
-      tags:
-      - message
-      summary: Send message
-      operationId: sendMessage
-      requestBody:
-        description: Message to send
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Message'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Message'
-        required: true
-      responses:
-        405:
-          description: Invalid input
-          content: {}
-      security:
-      - api_key: []
-      x-swagger-router-controller: Message
   /messages/{userId}:
     get:
       tags:
@@ -73,6 +50,35 @@ paths:
                 x-content-type: application/xml
         400:
           description: Invalid status value
+          content: {}
+      security:
+      - api_key: []
+      x-swagger-router-controller: Messages
+    post:
+      tags:
+      - messages
+      summary: Send message
+      operationId: sendMessage
+      parameters:
+      - name: userId
+        in: path
+        description: userId of user chat
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Message to send
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Message'
+        required: true
+      responses:
+        405:
+          description: Invalid input
           content: {}
       security:
       - api_key: []

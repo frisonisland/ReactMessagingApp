@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {getContacts} from './model/actions/contacts';
-import ChatPage from './ChatPage'
+import ChatPage from './ChatPage';
+import LoginPage from './LoginPage';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,6 +40,9 @@ class AppRouter extends Component {
           <Route path="/messages/:userId">
             <ChatPage/>
           </Route>
+          <Route path="/login">
+            <LoginPage/>
+          </Route>
         </Switch>
       </div>
     </div>
@@ -45,6 +50,7 @@ class AppRouter extends Component {
   )
   };
 }
+
 function mapContacts(state) {
   return {
     contacts: state.contacts
