@@ -6,13 +6,12 @@ import {getMessages} from './model/actions/messages';
 class ChatPage extends Component {
 
   constructor (props){
-  super(props);
-  this.getContact = this.getContact.bind(this);
-}
+    super(props);
+  }
 
-  getContact() {
-    var contact = this.props.contacts.filter(function(contact){
-      return (contact.userId === this.props.match.params.userId);
+  getContact = (contacts, id) => {
+    var contact = contacts.filter(function(contact){
+      return (String(contact.userId) === id);
     })[0];
     return contact;
   }
@@ -21,14 +20,19 @@ class ChatPage extends Component {
     // calling the new action creator
     this.props.getMessages(this.props.match.params.userId);
   }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.userId !== this.props.match.params.userId) {
       this.props.getMessages(this.props.match.params.userId);
+      this.getContact();
       console.log("Update");
     }
   }
+
   render() {
-    var contact = this.getContact();
+    const contact = this.getContact(this.props.contacts,this.props.match.params.userId);
+    console.log(contact);
+    console.log(this.props.messages);
     return (
       <div className="Messages-wrapper">
         <ul>
@@ -36,7 +40,7 @@ class ChatPage extends Component {
                contact ? this.props.messages.map((e,i) => {
                  return (<li key={i}>
                    <img className="avatar"
-                    src={"/avatar/" + this.state.contact.picture} />
+                    src={"/avatar/" + contact.picture} />
                    <div className="senderMessage">{e.body}</div>
                    </li>)
               }) : ""}
@@ -46,7 +50,7 @@ class ChatPage extends Component {
   }
 }
 function mapMessages(state) {
-  console.log(state.contacts);
+  console.log(state);
   return {
     messages: state.messages,
     contacts: state.contacts
