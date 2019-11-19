@@ -24,7 +24,7 @@ class ChatPage extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.match.params.userId !== this.props.match.params.userId) {
       this.props.getMessages(this.props.match.params.userId);
-      this.getContact();
+      this.getContact(this.props.contacts,this.props.match.params.userId);
       console.log("Update");
     }
   }
