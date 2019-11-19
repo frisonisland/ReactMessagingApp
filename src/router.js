@@ -24,6 +24,7 @@ class AppRouter extends Component {
           <div className="App-sider">
             <ul className="sidebar-menu">
               {this.props.contacts.map((e,i) => {
+                console.log(e);
                  return <li key={i}>
                    <Link to={"/messages/" + e.userId} key={i}>
                      <img className="avatar"

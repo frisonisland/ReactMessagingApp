@@ -9,7 +9,7 @@ export function getContacts() {
     return fetch(BASE_API_PATH + "/contacts")
     .then(response => response.json())
     .then(json => {
-      dispatch({ type: GET_CONTACTS, payload: json });
+      dispatch({ type: GET_CONTACTS, payload: json.contacts });
     });
   }
 }

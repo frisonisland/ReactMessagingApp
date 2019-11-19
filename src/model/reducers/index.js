@@ -3,7 +3,7 @@ import messagesReducer from './messages';
 import loginReducer from './login';
 
 const initialState = {
-  contacts: [{userId:"gahgahjgahjgaj", name:"Test", picture:"bot.jpg", status: true, info: "I'm a bot, bzkjkhk."}],
+  contacts: [],
   messages: []
 };
 
