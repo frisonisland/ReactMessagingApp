@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import {getMessages} from './model/actions/messages';
+import { MdSend } from "react-icons/md";
 
 class ChatPage extends Component {
 
   constructor (props){
     super(props);
+    this.state = {message:"",
+                  messages: []};
   }
 
   getContact = (contacts, id) => {
@@ -14,6 +17,11 @@ class ChatPage extends Component {
       return (String(contact.userId) === id);
     })[0];
     return contact;
+  }
+
+  sendMessage = () => {
+    this.setState({messages: [...this.state.messages, this.state.message],
+                                message: ""});
   }
 
   componentDidMount() {
@@ -39,12 +47,26 @@ class ChatPage extends Component {
             {
                contact ? this.props.messages.map((e,i) => {
                  return (<li key={i}>
-                   <img className="avatar"
+                   <div className="MessageContainer">
+                     <img className="avatar"
                     src={"/avatar/" + contact.picture} />
-                   <div className="senderMessage">{e.body}</div>
-                   </li>)
+                    <div className="senderMessage">{e.body}</div>
+                   </div>
+                 </li>)
               }) : ""}
+            {this.state.messages.map((e,i) => {
+                return (<li key={i}>
+                  <div className="MessageContainer myMessages">
+                    Me: <br/>
+                    {e}</div>
+                  </li>)
+             })}
         </ul>
+        <p><input className="messageInput"
+            value={this.state.message}
+            onChange={e => this.setState({message:e.target.value})}
+            type="text" maxLength="255"></input>
+          <button onClick={this.sendMessage}><MdSend/></button></p>
     </div>
   )
   }
