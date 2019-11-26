@@ -22,14 +22,15 @@ class LoginPage extends Component {
       this.setState({error:"Invalid username or password"})
     }
     else {
-      this.props.doLogin(this.state.username, this.state.password);
+      this.props.doLogin(this.state.username, this.state.password).then(
+        a => console.log(a)
+      );
     }
   }
 
   render() {
     return (
       <div className="Login-wrapper">
-        {this.state.error}
         <p>
           <label>Username: </label><input type="text" name="username"
             value={this.state.username}
@@ -41,6 +42,7 @@ class LoginPage extends Component {
             onChange={e => this.setState({password: e.target.value})}/>
         </p>
         <button key="login_button" onClick={this.login}>Login</button>
+        {this.props.error ? <p>Invalid username or password</p>: ""}
     </div>
   )
   }
@@ -49,11 +51,12 @@ class LoginPage extends Component {
 
 function mapLogin(state) {
   return {
-    token: state.token
+    token: state.token,
+    error: state.error
   }
 }
 
-export default withRouter(connect(
+export default connect(
   mapLogin,
   { doLogin }
-)(LoginPage));
+)(LoginPage);

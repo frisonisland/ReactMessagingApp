@@ -12,13 +12,6 @@ class ChatPage extends Component {
                   messages: []};
   }
 
-  getContact = (contacts, id) => {
-    var contact = contacts.filter(function(contact){
-      return (String(contact.userId) === id);
-    })[0];
-    return contact;
-  }
-
   sendMessage = () => {
     this.setState({messages: [...this.state.messages, this.state.message],
                                 message: ""});
@@ -26,60 +19,54 @@ class ChatPage extends Component {
 
   componentDidMount() {
     // calling the new action creator
-    this.props.getMessages(this.props.match.params.userId);
+    this.props.getMessages(this.props.contact.userId);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.match.params.userId !== this.props.match.params.userId) {
-      this.props.getMessages(this.props.match.params.userId);
-      this.getContact(this.props.contacts,this.props.match.params.userId);
+    if (prevProps.contact.userId !== this.props.contact.userId) {
+      this.props.getMessages(this.props.contact.userId);
       console.log("Update");
     }
   }
 
   render() {
-    const contact = this.getContact(this.props.contacts,this.props.match.params.userId);
-    console.log(contact);
-    console.log(this.props.messages);
     return (
-      <div className="Messages-wrapper">
-        <ul>
-            {
-               contact ? this.props.messages.map((e,i) => {
+        this.props.contact ?
+          <div className="Messages-wrapper">
+            <ul> {this.props.messages.map((e,i) => {
                  return (<li key={i}>
                    <div className="MessageContainer">
                      <img className="avatar"
-                    src={"/avatar/" + contact.picture} />
+                    src={"/avatar/" + this.props.contact.picture} />
                     <div className="senderMessage">{e.body}</div>
                    </div>
                  </li>)
-              }) : ""}
+              })}
             {this.state.messages.map((e,i) => {
                 return (<li key={i}>
                   <div className="MessageContainer myMessages">
                     Me: <br/>
                     {e}</div>
-                  </li>)
-             })}
+                </li>)})
+            }
         </ul>
         <p><input className="messageInput"
             value={this.state.message}
             onChange={e => this.setState({message:e.target.value})}
             type="text" maxLength="255"></input>
-          <button onClick={this.sendMessage}><MdSend/></button></p>
-    </div>
+          <button onClick={this.sendMessage}><MdSend/></button>
+        </p></div>:""
   )
   }
 }
 function mapMessages(state) {
   console.log(state);
   return {
-    messages: state.messages,
-    contacts: state.contacts
+    messages: state.messages
   }
 }
 
-export default withRouter(connect(
+export default connect(
   mapMessages,
   { getMessages }
-)(ChatPage));
+)(ChatPage);

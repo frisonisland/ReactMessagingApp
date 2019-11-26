@@ -52,8 +52,13 @@
   align-items:center;
   color: white;
   z-index:1000;
-  position:fixed;
+  //position:fixed;
   width:100vw;
+}
+
+.Login-wrapper {
+  width:100%;
+  text-align: center;
 }
 
 .sidebar-menu {

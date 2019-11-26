@@ -5,9 +5,12 @@ class SidebarChatItem extends Component {
 
   render() {
     return (
-      <div className="sidebarChatItem">
-        {{props.name}}
-      </div>
+      <li onClick={this.props.onClick}
+        key={this.props.user.userId}>
+        <img className="avatar"
+        src={"/avatar/" + this.props.user.picture} />
+      <span>{this.props.user.name}</span>
+    </li>
     );
   }
 }
