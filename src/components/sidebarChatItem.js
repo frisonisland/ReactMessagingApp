@@ -6,10 +6,10 @@ class SidebarChatItem extends Component {
   render() {
     return (
       <li onClick={this.props.onClick}
-        key={this.props.user.userId}>
+        key={this.props.chat.id}>
         <img className="avatar"
-        src={"/avatar/" + this.props.user.picture} />
-      <span>{this.props.user.name}</span>
+        src={"/avatar/" + this.props.chat.picture} />
+      <span>{this.props.chat.name}</span>
     </li>
     );
   }

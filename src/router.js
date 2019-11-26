@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {getContacts} from './model/actions/contacts';
+import {getChats} from './model/actions/chats';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
 import SidebarChatItem from './components/sidebarChatItem';
@@ -22,6 +23,7 @@ class AppRouter extends Component {
   componentDidMount() {
     // calling the new action creator
     this.props.getContacts();
+    this.props.getChats();
   }
 
   selectChat = (contact) => {
@@ -36,11 +38,11 @@ class AppRouter extends Component {
         <div className="App-content-wrapper">
             <div className="App-sider">
               <ul className="sidebar-menu">
-                {this.props.contacts.map((e,i) => {
+                {this.props.chats.map((e,i) => {
                 //console.log(e);
                    return <SidebarChatItem
                      onClick={this.selectChat.bind(this,e)}
-                     user={e} />
+                     chat={e} />
                 })}
               </ul>
               <div className="stickBottom">
@@ -48,7 +50,7 @@ class AppRouter extends Component {
               </div>
             </div>
         <div className="App-content">
-          <ChatPage contact={this.state.contact}/>
+          <ChatPage chat={this.state.contact}/>
         </div>
       </div>:<LoginPage/> }
     </div>
@@ -56,14 +58,15 @@ class AppRouter extends Component {
   };
 }
 
-function mapContacts(state) {
+function mapRouter(state) {
   return {
     contacts: state.contacts,
-    token: "aaa"//state.token
+    token: "aaa",//state.token
+    chats: state.chats
   }
 }
 
 export default connect(
-  mapContacts,
-  { getContacts}
+  mapRouter,
+  { getContacts, getChats}
 )(AppRouter);

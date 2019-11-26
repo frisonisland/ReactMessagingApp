@@ -6,10 +6,12 @@ import { Provider } from "react-redux";
 import store from "./model/store/index";
 import { getContacts } from "./model/actions/contacts";
 import { getMessages } from "./model/actions/messages";
+import { getChats } from "./model/actions/chats";
 
 window.store = store;
 window.getContacts = getContacts;
 window.getMessages = getMessages;
+window.getChats = getChats;
 
 ReactDOM.render(
   <Provider store={store}>

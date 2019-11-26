@@ -13,32 +13,28 @@ class ChatPage extends Component {
   }
 
   sendMessage = () => {
-    this.props.sendMessage(this.props.contact.userId, this.state.message.body);
+    this.props.sendMessage(this.props.chat.id, this.state.message.body);
     this.setState({messages: [...this.state.messages, this.state.message],
                                 message: {body:"", date:""}
                               });
   }
 
-  componentDidMount() {
-    // calling the new action creator
-    this.props.getMessages(this.props.contact.userId);
-  }
-
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.contact.userId !== this.props.contact.userId) {
-      this.props.getMessages(this.props.contact.userId);
+    if (prevProps.chat.id !== this.props.chat.id) {
+      //console.log(this.props.chat.id);
+      this.props.getMessages(this.props.chat.id);
       console.log("Update");
     }
   }
 
   render() {
     return (
-        this.props.contact ?
+        this.props.chat ?
           <div className="Messages-wrapper">
             <ul> {this.props.messages.map((e,i) => {
                  return (<li key={i}>
                    <img className="avatar"
-                     src={"/avatar/" + this.props.contact.picture} />
+                     src={"/avatar/" + this.props.chat.picture} />
                    <div className="MessageContainer">
                     <div className="senderMessage">{e.body}</div>
                     <div className="message-date">{e.date}</div>
@@ -67,8 +63,8 @@ class ChatPage extends Component {
   )
   }
 }
+
 function mapMessages(state) {
-  console.log(state);
   return {
     messages: state.messages
   }
