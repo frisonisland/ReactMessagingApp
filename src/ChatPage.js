@@ -12,7 +12,8 @@ class ChatPage extends Component {
                   messages: []};
   }
 
-  sendMessage = () => {
+  sendMessage = (e) => {
+    e.preventDefault();
     this.props.sendMessage(this.props.chat.id, this.state.message.body);
     this.setState({messages: [...this.state.messages, this.state.message],
                                 message: {body:"", date:""}
@@ -33,12 +34,13 @@ class ChatPage extends Component {
           <div className="Messages-wrapper">
             <ul> {this.props.messages.map((e,i) => {
                  return (<li key={i}>
-                   <img className="avatar"
-                     src={"/avatar/" + this.props.chat.picture} />
+                   <div className={(e.sender === "me" ? "myMessages":"")}>
+                    {e.sender}
                    <div className="MessageContainer">
                     <div className="senderMessage">{e.body}</div>
                     <div className="message-date">{e.date}</div>
                    </div>
+                 </div>
                  </li>)
               })}
             {this.state.messages.map((e,i) => {
@@ -53,12 +55,13 @@ class ChatPage extends Component {
                 </li>)})
             }
         </ul>
-        <p><input className="messageInput"
+        <p><form onSubmit={this.sendMessage}>
+        <input className="messageInput"
             value={this.state.message.body}
             onChange={e => this.setState({message: {body: e.target.value,
                                                     date: new Date().toISOString()}})}
             type="text" maxLength="255"></input>
-          <button onClick={this.sendMessage}><MdSend/></button>
+          </form>
         </p></div>:""
   )
   }

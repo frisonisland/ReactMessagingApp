@@ -21,8 +21,6 @@
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  margin-left: 20px;
-  margin-right: 20px;
   flex-direction: column;
 }
 
@@ -81,6 +79,11 @@
 
 .App-link {
   color: #61dafb;
+}
+.messageInput {
+  position:fixed;
+  bottom:0;
+  width:100%;
 }
 .App-sider {
   min-width:200px;
