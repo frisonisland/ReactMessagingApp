@@ -100,13 +100,16 @@
 }
 .App-content {
   display:flex;
-  margin-top:40px;
   margin-left:200px;
   max-width: calc(100vw - 200px);
   width:100vw;
   justify-content:center;
 }
-
+.message-date {
+  text-align: right;
+  font-size: 10px;
+  color: #757272;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

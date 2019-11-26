@@ -1,8 +1,8 @@
-import {NEW_MESSAGE, GET_MESSAGES} from '../constants/action-types';
+import {SEND_MESSAGE, GET_MESSAGES} from '../constants/action-types';
 
 
 function messagesReducer(state, action) {
-  if (action.type === NEW_MESSAGE) {
+  if (action.type === SEND_MESSAGE) {
     return Object.assign({}, state, {
       messages: state.messages.concat(action.payload)
     });
