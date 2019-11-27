@@ -16,15 +16,15 @@
 .modal {
   text-align:center;
   z-index:9999;
-  height: 100%;
   min-height:200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  top:50px;
+  box-shadow: 0px 0px 4px 0px #666;
   text-align: center;
   margin-left: 500px;
   position:absolute;
   min-width:400px;
+  display: flex;
+  flex-direction: column;
 }
 .overlay {
   background-color: #333;
@@ -35,7 +35,7 @@
   height:100%;
 }
 .modal-header {
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   min-height: 30px;
   padding-left: 20px;
   padding-right: 20px;
@@ -55,7 +55,6 @@
   background-color: #eee;
 }
 .modal-content {
-  border: 1px solid #ddd;
   min-height: 200px;
   padding-left: 20px;
   padding-right: 20px;
@@ -107,6 +106,7 @@
   z-index:1000;
   position:fixed;
   width:100vw;
+  box-shadow: 0px 2px 2px 0px #777; 
 }
 
 .Login-wrapper {
@@ -150,7 +150,7 @@
   background-color: #eee;
   min-height:100vh;
   z-index:999;
-  border-right: 1px solid #bbb;
+  box-shadow: 5px 0 5px 0px #777;
 }
 
 .App-content-wrapper {

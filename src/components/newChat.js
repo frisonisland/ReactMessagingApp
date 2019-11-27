@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import Modal from "./modal";
+import {postChat} from "../model/actions/chats";
 import {IoMdCloseCircleOutline} from "react-icons/io";
 class NewChatComponent extends Modal {
 
@@ -8,9 +9,11 @@ class NewChatComponent extends Modal {
 
       const content = this.props.contacts.map((e,i) => {
         return(<p className="selectable">
-                <img className="avatar"
+                <button onClick={() => this.props.postChat(e.name ,e.userId)}>
+                  <img className="avatar"
                 src={"/avatar/" + e.picture} />
                   {e.name}
+                  </button>
                 </p>)});
     return(
       <Modal hidden={this.props.hidden}
@@ -28,5 +31,6 @@ function mapNewChat(state) {
 }
 
 export default connect(
-  mapNewChat
+  mapNewChat,
+  {postChat}
 )(NewChatComponent);
