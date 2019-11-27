@@ -20,13 +20,18 @@
 .Messages-wrapper {
   display: flex;
   justify-content: flex-start;
-  width: 100%;
+  padding:0 40px 0 40px;
   flex-direction: column;
 }
 
 .Messages-wrapper li {
   list-style-type: none;
 }
+
+.ChatPage {
+  width: 100%;
+}
+
 .MessageContainer{
   list-style-type: none;
   border: 1px solid #ccc;

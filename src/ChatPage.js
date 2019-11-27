@@ -31,11 +31,14 @@ class ChatPage extends Component {
   render() {
     return (
         this.props.chat ?
-          <div className="Messages-wrapper">
-            <ul> {this.props.messages.map((e,i) => {
+          <div className="ChatPage">
+            <ul className="Messages-wrapper">
+              {this.props.messages.map((e,i) => {
                  return (<li key={i}>
                    <div className={(e.sender === "me" ? "myMessages":"")}>
-                    {e.sender}
+                    {(e.sender === "me" ? "Me": this.props.contacts.filter(c => {
+                      return (c.userId === e.sender)})[0].name //filter contact name in contacts
+                    )}
                    <div className="MessageContainer">
                     <div className="senderMessage">{e.body}</div>
                     <div className="message-date">{e.date}</div>
@@ -55,21 +58,23 @@ class ChatPage extends Component {
                 </li>)})
             }
         </ul>
-        <p><form onSubmit={this.sendMessage}>
+        <form onSubmit={this.sendMessage}>
         <input className="messageInput"
             value={this.state.message.body}
             onChange={e => this.setState({message: {body: e.target.value,
                                                     date: new Date().toISOString()}})}
             type="text" maxLength="255"></input>
           </form>
-        </p></div>:""
+        </div>:""
   )
   }
 }
 
 function mapMessages(state) {
+  console.log(state.contacts);
   return {
-    messages: state.messages
+    messages: state.messages,
+    contacts: state.contacts
   }
 }
 
