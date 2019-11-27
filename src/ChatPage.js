@@ -71,7 +71,6 @@ class ChatPage extends Component {
 }
 
 function mapMessages(state) {
-  console.log(state.contacts);
   return {
     messages: state.messages,
     contacts: state.contacts
