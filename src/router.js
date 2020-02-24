@@ -5,6 +5,8 @@ import {getChats} from './model/actions/chats';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
 import SidebarChatItem from './components/sidebarChatItem';
+import { IoIosAddCircleOutline, IoIosArrowForward } from "react-icons/io";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -17,7 +19,7 @@ class AppRouter extends Component {
 
   constructor (props){
     super(props);
-    this.state = {contact:""};
+    this.state = {contact:"", sidebarToggled:false};
   }
 
   componentDidMount() {
@@ -30,12 +32,17 @@ class AppRouter extends Component {
     console.log("select chat");
     this.setState({contact:contact});
   }
+  toggleSidebar = () => {
+    this.setState({
+      sidebarToggled: !(this.state.sidebarToggled)
+    });
+  }
 
   render() {
     return (
       <div>
         {this.props.token ?
-        <div className="App-content-wrapper">
+        <div className={"App-content-wrapper" + (this.state.sidebarToggled ? " sidebarToggled": "")}>
             <div className="App-sider">
               <ul className="sidebar-menu">
                 {this.props.chats.map((e,i) => {
@@ -50,6 +57,7 @@ class AppRouter extends Component {
               </div>
             </div>
         <div className="App-content">
+          <button className="ghostButton sidebarOpener" onClick={this.toggleSidebar}><IoIosArrowForward/></button>
           <ChatPage chat={this.state.contact}/>
         </div>
       </div>:<LoginPage/> }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {IoIosSearch} from 'react-icons/io';
+import "./searchBar.css";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -9,12 +10,11 @@ class SearchBar extends Component {
         text: ''
       }
   }
- 
+
   render() {
     return (
       <div className="searchBar">
         <input placeholder="Search" type="text" className="searchText"/>
-        <button className="searchLens"><IoIosSearch/></button>
       </div>
     );
   }

@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import AppRouter from './router';
 import logo from './logo.svg';
 import './App.css';
-import SearchBar from './components/searchBar';
-import { IoIosAddCircleOutline } from "react-icons/io";
+import Header from './components/header';
+import { IoIosAddCircleOutline, IoIosArrowForward } from "react-icons/io";
 import NewChatComponent from './components/newChat';
 
 class App extends Component {
@@ -21,18 +21,8 @@ class App extends Component {
   }
   render() {
     return (
-
       <div className="App">
-        <header className="App-header">
-          <div className="HeaderLogo">
-            <img src={logo} className="App-logo" alt="logo" />
-            <span className="Header-title">App React</span>
-            <button onClick={this.toggleNewChat}>
-              <IoIosAddCircleOutline/>
-            </button>
-          </div>
-            <SearchBar/>
-        </header>
+        <Header/> 
         <NewChatComponent toggleModal={this.toggleNewChat}
           hidden={this.state.hidden}/>
         <AppRouter/>

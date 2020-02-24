@@ -1,0 +1,12 @@
+.searchBar {
+  height:25px;
+  display:flex;
+  margin-right:10px;
+}
+
+.searchText {
+  border: none;
+  color:white;
+  border-bottom: 1px solid #ddd;
+  background-color:transparent;
+}

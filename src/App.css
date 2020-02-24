@@ -1,5 +1,7 @@
 
-
+.App {
+  display:flex;
+}
 .App-logo {
   height: 40px;
   pointer-events: none;
@@ -9,39 +11,6 @@
 .Header-title {
   flex:1;
   margin-left: 10px;
-}
-.hidden {
-  display: none!important;
-}
-.modal {
-  text-align:center;
-  z-index:9999;
-  min-height:200px;
-  top:50px;
-  box-shadow: 0px 0px 4px 0px #666;
-  text-align: center;
-  margin-left: 500px;
-  position:absolute;
-  min-width:400px;
-  display: flex;
-  flex-direction: column;
-}
-.overlay {
-  background-color: #333;
-  opacity: 0.6;
-  position:absolute;
-  z-index:1000;
-  width:100%;
-  height:100%;
-}
-.modal-header {
-  border-bottom: 1px solid #ddd;
-  min-height: 30px;
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
 }
 .selectable {
   border: 1px solid #ddd;
@@ -53,12 +22,6 @@
 }
 .selectable:hover {
   background-color: #eee;
-}
-.modal-content {
-  min-height: 200px;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: white;
 }
 .avatar {
   width: 30px;
@@ -106,7 +69,7 @@
   z-index:1000;
   position:fixed;
   width:100vw;
-  box-shadow: 0px 2px 2px 0px #777; 
+  box-shadow: 0px 2px 2px 0px #777;
 }
 
 .Login-wrapper {
@@ -141,7 +104,7 @@
   width:100%;
 }
 .App-sider {
-  min-width:200px;
+  transition-duration: 200ms;
   height:100vh;
   top:40px;
   position:fixed;
@@ -155,13 +118,12 @@
 
 .App-content-wrapper {
   display:flex;
+  margin-top:40px;
 }
 .App-content {
   display:flex;
-  margin-left:200px;
-  max-width: calc(100vw - 200px);
+  transition-duration: 200ms;
   width:100vw;
-  justify-content:center;
 }
 .message-date {
   text-align: right;
@@ -177,117 +139,34 @@
   }
 }
 
-.Chart-Container {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  max-width: calc(100vw - 200px);
-  flex-wrap: wrap;
+.sidebarToggled .App-sider {
+    min-width:200px;
+}
+.sidebarToggled  .App-content {
+    margin-left:200px;
+    max-width: calc(100vw - 200px);
 }
 
-.Chart-Block {
-  width:400px;
+.sidebarToggled .sidebarOpener {
+  transform: rotateY(180deg);
 }
-
-.Line-Block {
-  width: 100%;
-}
-
-.Image-Block {
-  border: 2px solid #282c34;
-  padding: 1px;
-  margin:10px;
-  width:200px;
-  height:150px;
-  display:flex;
-  transition: all .1s ease-in-out;
-  background-color:#ffffff;
-}
-.Image-Block.zoom {
-  transform: scale(1.1);
-}
-.Image-Block > img {
-  width:100%;
-  object-fit:cover;
-}
-
-.Gallery-Grid {
-  display:flex;
-  flex-direction:row;
-  padding: 10px;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.music-play {
-  animation: music-play infinite 20s linear;
-}
-.music-pause {
-  animation: music-play infinite 20s linear;
-  animation-play-state: paused;
-}
-.music-ffwd {
-  animation: music-play infinite 3s linear;
-}
-
-.music-rewind {
-  animation: music-rewind infinite 3s linear;
-}
-
-@keyframes music-play {
-  from {
-    transform: rotate(0deg);
+@media screen and (min-width: 600px) {
+  .App-sider {
+    min-width:200px;
   }
-  to {
-    transform: rotate(360deg);
+  .App-content {
+    margin-left:200px;
+    max-width: calc(100vw - 200px);
+  }
+  .sidebarOpener {
+    display:none;
   }
 }
 
-@keyframes music-rewind {
-  from {
-    transform: rotate(360deg);
-  }
-  to {
-    transform: rotate(0deg);
-  }
+.ghostButton {
+  background-color: transparent;
+  border:none;
 }
-
-.Music-Page {
-  display:flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.Music-Player {
-}
-
-.Youtube-Video {
-  width:400px;
-}
-
-.loading-container {
-  display:flex;
-  align-items: stretch;
-  margin-top: 25vh;
-  width:100vw;
-  justify-content:center;
-}
-
-.loading {
-  animation: loading infinite 1s linear;
-}
-
-@keyframes loading {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .stickBottom {
   bottom:10px;
   position:fixed;
@@ -325,16 +204,7 @@
   align-items: center;
 }
 
-.searchBar {
-  height:25px;
-  display:flex;
-  margin-right:10px;
-}
 
-.searchText {
-  border: none;
-  color:#282c34;
-}
 .searchLens {
   background-color: white;
   height:100%;

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from "react-redux";
 import {IoMdCloseCircleOutline} from "react-icons/io";
+import "./modal.css";
+
 class Modal extends Component {
   render(){
     return(

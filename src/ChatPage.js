@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import {getMessages, sendMessage} from './model/actions/messages';
+import { IoIosArrowForward } from "react-icons/io";
 import { MdSend } from "react-icons/md";
 
 class ChatPage extends Component {

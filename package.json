@@ -3,20 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "chart.js": "latest",
-    "react": "^16.8.2",
-    "react-chartjs-2": "latest",
-    "react-dom": "^16.8.2",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/user-event": "^7.2.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.3.1",
     "react-icons": "latest",
+    "react-redux": "latest",
     "react-router-dom": "latest",
-    "react-scripts": "2.1.5",
-    "redux":"latest",
-    "redux-thunk":"latest",
-    "react-redux":"latest",
+    "redux": "4.0.5",
+    "redux-thunk": "latest",
     "swagger-nodegen-cli": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
+    "stop": "react-scripts stop",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -30,5 +32,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4"
+  }
 }
