@@ -9,10 +9,10 @@ class NewChatComponent extends Modal {
 
       const content = this.props.contacts.map((e,i) => {
         return(<p className="selectable">
-                <button onClick={() => this.props.postChat(e.name ,e.userId)}>
+                <button onClick={() => this.props.postChat(e.chatName ,e.userId)}>
                   <img className="avatar"
-                src={"/avatar/" + e.picture} />
-                  {e.name}
+                src={"/avatar/" + e.chatPicture} />
+              {e.chatName}
                   </button>
                 </p>)});
     return(
