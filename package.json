@@ -14,7 +14,9 @@
     "react-router-dom": "latest",
     "redux": "4.0.5",
     "redux-thunk": "latest",
-    "swagger-nodegen-cli": "^3.0.8"
+    "redux-api-middleware":"latest",
+    "swagger-nodegen-cli": "^3.0.8",
+    "universal-cookie":"latest"
   },
   "scripts": {
     "start": "react-scripts start",

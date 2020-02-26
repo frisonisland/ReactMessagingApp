@@ -2,6 +2,7 @@ import React, {Component, useState} from 'react';
 import { withRouter } from 'react-router-dom';
 import {doLogin} from './model/actions/login';
 import { connect } from "react-redux";
+import Cookies from 'universal-cookie';
 
 class LoginPage extends Component {
   constructor (props){
@@ -23,7 +24,14 @@ class LoginPage extends Component {
     }
     else {
       this.props.doLogin(this.state.username, this.state.password).then(
-        a => console.log(a)
+        token => {
+          console.log("Token:" + token);
+          if (token) {
+            const cookies = new Cookies();
+            cookies.set('Token', token, { path: '/' });
+          }
+
+        }
       );
     }
   }

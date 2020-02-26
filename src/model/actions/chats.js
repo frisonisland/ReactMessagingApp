@@ -1,15 +1,12 @@
 import {GET_CHATS, POST_CHAT, BASE_API_PATH} from '../constants/action-types';
 
 export function getChats() {
-  return function(dispatch) {
-    return fetch(BASE_API_PATH + "/chats/")
-    .then(response => response.json())
-    .then(json => {
-      dispatch({ type: GET_CHATS, payload: json.chats });
-    });
-  }
+  return {
+    type: GET_CHATS,
+    endpoint: BASE_API_PATH + "/chats/",
+    config: {method: "GET"}
+  };
 }
-
 export function postChat(name, userId) {
   return function(dispatch) {
     return fetch(BASE_API_PATH + "/chats/",{

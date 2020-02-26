@@ -21,11 +21,18 @@ class AppRouter extends Component {
     super(props);
     this.state = {contact:"", sidebarToggled:false};
   }
-
   componentDidMount() {
+    if (this.props.token) {
+      this.props.getContacts();
+      this.props.getChats();
+    }
+  }
+  componentDidUpdate(prevProps) {
     // calling the new action creator
-    this.props.getContacts();
-    this.props.getChats();
+    if (this.props.token != prevProps.token) {
+      this.props.getContacts();
+      this.props.getChats();
+    }
   }
 
   selectChat = (contact) => {
@@ -40,16 +47,15 @@ class AppRouter extends Component {
 
   render() {
     return (
-      <div>
+      <div className="PageWrapper">
         {this.props.token ?
         <div className={"App-content-wrapper" + (this.state.sidebarToggled ? " sidebarToggled": "")}>
             <div className="App-sider">
               <ul className="sidebar-menu">
                 {this.props.chats.map((e,i) => {
-                //console.log(e);
                    return <SidebarChatItem
                      onClick={this.selectChat.bind(this,e)}
-                     chat={e} />
+                     chat={e}/>
                 })}
               </ul>
               <div className="stickBottom">
@@ -69,7 +75,7 @@ class AppRouter extends Component {
 function mapRouter(state) {
   return {
     contacts: state.contacts,
-    token: "aaa",//state.token
+    token: state.token,
     chats: state.chats
   }
 }

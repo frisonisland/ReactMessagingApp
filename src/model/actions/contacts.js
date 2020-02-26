@@ -5,11 +5,9 @@ export function addContact(payload) {
 }
 
 export function getContacts() {
-  return function(dispatch) {
-    return fetch(BASE_API_PATH + "/contacts")
-    .then(response => response.json())
-    .then(json => {
-      dispatch({ type: GET_CONTACTS, payload: json.contacts });
-    });
+  return {
+    type: GET_CONTACTS,
+    endpoint: BASE_API_PATH + "/contacts",
+    config: {method: "GET"}
   }
 }

@@ -13,6 +13,7 @@ export function doLogin(username, password) {
     .then(response => response.json())
     .then(json => {
       dispatch({ type: LOGIN, payload: json });
+      return json.token;
     });
   }
 }

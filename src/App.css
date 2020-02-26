@@ -12,6 +12,10 @@
   flex:1;
   margin-left: 10px;
 }
+.PageWrapper {
+  width:100vw;
+  margin-top:40px;
+}
 .selectable {
   border: 1px solid #ddd;
 }
@@ -139,12 +143,13 @@
   }
 }
 
-.sidebarToggled .App-sider {
-    min-width:200px;
-}
-.sidebarToggled  .App-content {
+.sidebarToggled .App-content {
     margin-left:200px;
     max-width: calc(100vw - 200px);
+}
+
+.sidebarToggled .App-sider {
+    min-width:200px;
 }
 
 .sidebarToggled .sidebarOpener {

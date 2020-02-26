@@ -11,7 +11,7 @@ function contactsReducer(state, action) {
     //console.log("Got contacts");
     //console.log(action.payload);
     return Object.assign({}, state, {
-      contacts: state.contacts.concat(action.payload)
+      contacts: state.contacts.concat(action.payload.contacts)
     });
   }
   return state;

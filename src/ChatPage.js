@@ -30,6 +30,7 @@ class ChatPage extends Component {
   }
 
   render() {
+    console.log(this.props.contacts);
     return (
         this.props.chat ?
           <div className="ChatPage">
@@ -37,9 +38,9 @@ class ChatPage extends Component {
               {this.props.messages.map((e,i) => {
                  return (<li key={i}>
                    <div className={(e.sender === "me" ? "myMessages":"")}>
-                    {(e.sender === "me" ? "Me": this.props.contacts.filter(c => {
+                    {this.props.contacts.filter(c => {
                       return (c.userId === e.sender)})[0].name //filter contact name in contacts
-                    )}
+                    }
                    <div className="MessageContainer">
                     <div className="senderMessage">{e.body}</div>
                     <div className="message-date">{e.date}</div>
