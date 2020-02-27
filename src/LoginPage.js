@@ -23,16 +23,7 @@ class LoginPage extends Component {
       this.setState({error:"Invalid username or password"})
     }
     else {
-      this.props.doLogin(this.state.username, this.state.password).then(
-        token => {
-          console.log("Token:" + token);
-          if (token) {
-            const cookies = new Cookies();
-            cookies.set('Token', token, { path: '/' });
-          }
-
-        }
-      );
+      this.props.doLogin(this.state.username, this.state.password);
     }
   }
 

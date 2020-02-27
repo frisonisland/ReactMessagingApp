@@ -16,6 +16,7 @@ export default function() {
       return fetch(request).then(response => response.json())
       .then(json => {
         next({ type: callApi.type, payload: json });
+        return json;
       });
       }
     }

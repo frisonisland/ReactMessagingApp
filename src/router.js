@@ -23,13 +23,15 @@ class AppRouter extends Component {
   }
   componentDidMount() {
     if (this.props.token) {
+      console.log("call")
       this.props.getContacts();
       this.props.getChats();
     }
   }
   componentDidUpdate(prevProps) {
     // calling the new action creator
-    if (this.props.token != prevProps.token) {
+    if (this.props.token && (this.props.token != prevProps.token)) {
+      console.log("call")
       this.props.getContacts();
       this.props.getChats();
     }
