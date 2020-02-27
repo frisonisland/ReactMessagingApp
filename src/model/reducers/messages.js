@@ -9,7 +9,7 @@ function messagesReducer(state, action) {
   }
   if (action.type === GET_MESSAGES) {
     return Object.assign({}, state, {
-      messages: action.payload
+      messages: action.payload.messages
     });
   }
   return state;

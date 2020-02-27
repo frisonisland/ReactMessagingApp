@@ -22,9 +22,8 @@ class ChatPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.chat.id !== this.props.chat.id) {
-      //console.log(this.props.chat.id);
-      this.props.getMessages(this.props.chat.id);
+    if (prevProps.chat.chatId !== this.props.chat.chatId) {
+      this.props.getMessages(this.props.chat.chatId);
       console.log("Update");
     }
   }
@@ -37,29 +36,16 @@ class ChatPage extends Component {
             <ul className="Messages-wrapper">
               {this.props.messages.map((e,i) => {
                  return (<li key={i}>
-                   <div className={(e.sender === "me" ? "myMessages":"")}>
-                    {this.props.contacts.filter(c => {
-                      return (c.userId === e.sender)})[0].name //filter contact name in contacts
-                    }
+                   <div>
+                     {e.name}
                    <div className="MessageContainer">
-                    <div className="senderMessage">{e.body}</div>
-                    <div className="message-date">{e.date}</div>
+                    <div className="senderMessage">{e.message}</div>
+                    <div className="message-date">{e.createdAt}</div>
                    </div>
                  </div>
                  </li>)
               })}
-            {this.state.messages.map((e,i) => {
-                return (<li key={i}>
-                  <div className="myMessages">
-                    Me
-                  <div className="MessageContainer">
-                     <div className="senderMessage">{e.body}</div>
-                     <div className="message-date">{e.date}</div>
-                  </div>
-                </div>
-                </li>)})
-            }
-        </ul>
+            </ul>
         <form onSubmit={this.sendMessage}>
         <input className="messageInput"
             value={this.state.message.body}

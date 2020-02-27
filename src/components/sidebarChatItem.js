@@ -8,8 +8,8 @@ class SidebarChatItem extends Component {
       <li onClick={this.props.onClick}
         key={this.props.chat.id}>
         <img className="avatar"
-        src={"/avatar/" + this.props.chat.picture} />
-      <span>{this.props.chat.name}</span>
+        src={"/avatar/" + this.props.chat.chatPicture} />
+      <span>{this.props.chat.chatName}</span>
     </li>
     );
   }

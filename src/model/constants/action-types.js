@@ -7,3 +7,4 @@ export const SEND_MESSAGE = "SEND_MESSAGE";
 export const LOGIN = "LOGIN";
 export const GET_CHATS = "GET_CHATS";
 export const POST_CHAT = "POST_CHAT";
+export const GET_CURRENT_USER = "GET_CURRENT_USER";

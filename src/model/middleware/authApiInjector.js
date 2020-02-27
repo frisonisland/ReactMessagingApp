@@ -4,8 +4,6 @@ import Cookies from 'universal-cookie';
 export default function() {
   return function(next) {
     return function(callApi) {
-        console.log(next);
-        console.log(callApi);
       // Check if this action is a redux-api-middleware action.
       // Pass the FSA to the next action.
       const cookies = new Cookies();

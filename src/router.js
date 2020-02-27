@@ -4,8 +4,10 @@ import {getContacts} from './model/actions/contacts';
 import {getChats} from './model/actions/chats';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
+import Sidebar from './sidebar';
 import SidebarChatItem from './components/sidebarChatItem';
 import { IoIosAddCircleOutline, IoIosArrowForward } from "react-icons/io";
+import { getCurrentUser } from "./model/actions/user";
 
 import {
   BrowserRouter as Router,
@@ -26,6 +28,7 @@ class AppRouter extends Component {
       console.log("call")
       this.props.getContacts();
       this.props.getChats();
+      this.props.getCurrentUser();
     }
   }
   componentDidUpdate(prevProps) {
@@ -34,11 +37,12 @@ class AppRouter extends Component {
       console.log("call")
       this.props.getContacts();
       this.props.getChats();
+      this.props.getCurrentUser();
     }
   }
 
   selectChat = (contact) => {
-    console.log("select chat");
+    console.log(contact);
     this.setState({contact:contact});
   }
   toggleSidebar = () => {
@@ -52,18 +56,9 @@ class AppRouter extends Component {
       <div className="PageWrapper">
         {this.props.token ?
         <div className={"App-content-wrapper" + (this.state.sidebarToggled ? " sidebarToggled": "")}>
-            <div className="App-sider">
-              <ul className="sidebar-menu">
-                {this.props.chats.map((e,i) => {
-                   return <SidebarChatItem
-                     onClick={this.selectChat.bind(this,e)}
-                     chat={e}/>
-                })}
-              </ul>
-              <div className="stickBottom">
-                &copy; 2019 - Davide Frison
-              </div>
-            </div>
+            <Sidebar chats={this.props.chats}
+                      selectChat={this.selectChat}>
+            </Sidebar>
         <div className="App-content">
           <button className="ghostButton sidebarOpener" onClick={this.toggleSidebar}><IoIosArrowForward/></button>
           <ChatPage chat={this.state.contact}/>
@@ -84,5 +79,5 @@ function mapRouter(state) {
 
 export default connect(
   mapRouter,
-  { getContacts, getChats}
+  { getContacts, getChats, getCurrentUser}
 )(AppRouter);
